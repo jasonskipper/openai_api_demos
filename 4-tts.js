@@ -15,7 +15,7 @@ async function main() {
   const mp3 = await openai.audio.speech.create({
     model: 'tts-1',
     voice: 'shimmer',
-    input: 'Lexi needs to go count those tablecloths'
+    input: 'Hello I am the Text to Speech model, I hope you are all enjoying this demo'
   })
   console.log(speechFile)
   const buffer = Buffer.from(await mp3.arrayBuffer())

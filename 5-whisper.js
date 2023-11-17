@@ -13,4 +13,4 @@ async function transcribeAudio(filePath) {
   })
   console.log(response)
 }
-transcribeAudio('./openai_audio_test.m4a')
+transcribeAudio('./speech.mp3')

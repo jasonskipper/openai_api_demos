@@ -16,18 +16,14 @@ function getTimeOfDay(){
 	return hours + ":" + minutes + ":" + seconds + " " + timeOfDay
 }
 
-async function callChatGPTWithFunctions(appendString){
+async function callGPTWithFunctions(appendString){
 	let messages = [
-        {
-            role: "system",
-            content: "Perform function requests for the user",
-        },
         {
             role: "user",
             content: "What time is it?",
         }
     ];
-	// Step 1: Call ChatGPT with the function name
+	// Step 1: Call GPT with the function name
 	let chat = await openai.chat.completions.create({
 		model: "gpt-3.5-turbo-0613",
 		messages,
@@ -47,9 +43,9 @@ async function callChatGPTWithFunctions(appendString){
 	let wantsToUseFunction = chat.choices[0].finish_reason == "function_call"
 
 	let content = ""
-	// Step 2: Check if ChatGPT wants to use a function
+	// Step 2: Check if GPT wants to use a function
 	if(wantsToUseFunction){
-		// Step 3: Use ChatGPT arguments to call your function
+		// Step 3: Use GPT arguments to call your function
 		if(chat.choices[0].message.function_call.name == "getTimeOfDay"){
 			content = getTimeOfDay()
 			messages.push(chat.choices[0].message)
@@ -62,13 +58,13 @@ async function callChatGPTWithFunctions(appendString){
 	}
 
 	
-	// Step 4: Call ChatGPT again with the function response
+	// Step 4: Call GPT again with the function response
 	let step4response = await openai.chat.completions.create({
-		model: "gpt-3.5-turbo-0613",
+		model: "gpt-4-1106-preview",
 		messages,
 	});
 	console.log(step4response.choices[0])
 	
 }
 
-callChatGPTWithFunctions()
+callGPTWithFunctions()

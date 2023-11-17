@@ -13,6 +13,4 @@ async function generateImage(prompt) {
     })
     console.log(image.data[0].url)
 }
-// generateImage('Please create an image of a beautiful sunset in Hawaii in the rain.')
-// generateImage('a sunrise on a beach in bermuda with a sailboat and clear skies')
 generateImage('a snowy day on a glacier in alaska with a penguin drinking steaming hot chocolate')
